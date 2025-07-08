@@ -7,10 +7,13 @@ const path = require('path');
 const prettier = require('prettier');
 
 const app = express();
-const PORT = 5000;
+
+// ✅ Use Railway/Render/Netlify compatible PORT
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(bodyParser.json());
+
 app.get("/", (req, res) => {
   res.send("🚀 Formatter Backend is Live!");
 });
@@ -140,9 +143,7 @@ app.post('/format', async (req, res) => {
   } catch (err) {
     console.error("❌ Format error:", err.message);
 
-    // Friendly error message for user:
     let friendlyMessage = err.message;
-
     if (
       friendlyMessage.toLowerCase().includes('missing semicolon') ||
       friendlyMessage.toLowerCase().includes('syntax error') ||
