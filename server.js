@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 app.get("/", (req, res) => {
   res.send("🚀 Formatter Backend is Live!");
 });
+console.log("🚀 Formatter server booting...");
 
 const runShell = (cmd) =>
   new Promise((resolve, reject) => {
